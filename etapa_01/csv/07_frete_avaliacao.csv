@@ -1,0 +1,5 @@
+faixa_frete;nota_media;numero_avaliacoes
+1 - Frete baixo (<15);4.11;41247
+2 - Frete médio (15-30);4.01;58973
+3 - Frete alto (30-50);3.9;8443
+4 - Frete muito alto (>50);3.89;4651

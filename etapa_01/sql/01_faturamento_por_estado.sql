@@ -1,4 +1,4 @@
--- Pergunta: Qual o faturamento total por estado do cliente?
+-- Qual o faturamento total por estado do cliente?
 
 SELECT  t2.customer_state AS estado,
         ROUND(SUM(t3.price + t3.freight_value), 2) AS faturamento

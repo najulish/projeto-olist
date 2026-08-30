@@ -1,4 +1,3 @@
-"product_category_name,media_avaliacao,numero_avaliacoes
-fraldas_higiene,3.26,39
-moveis_escritorio,3.49,1701
-"
+product_category_name;media_avaliacao;numero_avaliacoes
+fraldas_higiene;3.26;39
+moveis_escritorio;3.49;1701
