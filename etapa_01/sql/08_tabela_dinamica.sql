@@ -29,6 +29,8 @@ FROM tb_reviews_rn
 WHERE rn = 1)
 
 SELECT  t1.order_id,
+        t1.price,
+        t1.freight_value,
         t2.order_purchase_timestamp,
         t3.customer_state,
         t4.product_category_name,
