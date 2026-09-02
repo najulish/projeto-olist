@@ -39,6 +39,9 @@ Tabelas principais:
 - **Produtos sem categoria**: os 610 produtos sem categoria informada foram marcados como "nao_informado" em vez de excluídos (script de tratamento em `etapa_01/tratamento/`).
 - **Geolocalização**: a tabela original tinha múltiplas coordenadas por CEP; foi criada `geolocation_tratada` com a coordenada média por CEP, para uso nas análises espaciais futuras (script de tratamento em `etapa_01/tratamento/`).
 - **Formato de datas**: as colunas de data estão como TEXT no formato ISO (YYYY-MM-DD HH:MM:SS), compatível nativamente com as funções de data do SQLite (julianday, date, strftime).
+- **Período dos gráficos**: as análises em Excel (tabelas dinâmicas e gráficos) consideram o recorte de 12 meses entre agosto de 2017 e agosto de 2018, por ser o período com dados mais completos e consistentes. Isso pode gerar pequenas diferenças percentuais em relação às queries SQL originais (perguntas 1-7), que consideram todo o histórico da base.
+- **Nuance sobre ticket médio regional**: ao comparar o ticket médio considerando só o valor do produto (sem frete), estados mais distantes do eixo Sul-Sudeste continuam apresentando valores mais altos — indicando que a diferença regional de ticket médio não é explicada apenas pelo custo de frete, podendo refletir também diferenças de precificação ou mix de produtos por região.
+- **Sazonalidade no gráfico de pedidos por mês**: parte da variação mês a mês observada no volume de pedidos (especialmente a queda nos meses finais do período analisado) é provavelmente um efeito de como os dados foram extraídos/coletados, não necessariamente uma queda real de demanda — exceto o pico de novembro/2017, coerente com o período de Black Friday.
 
 ## Ferramentas utilizadas
 SQL e Excel.
@@ -51,14 +54,15 @@ SQL e Excel.
 5. Qual o ticket médio geral?
 6. Quais estados têm ticket médio acima da média geral?
 7. Qual a relação entre valor do frete e nota da avaliação?
+8. Quem são os 10 clientes que mais gastaram no total (considerando `customer_unique_id`)?
 
 ## Principais insights
-- São Paulo concentra 37,4% do faturamento total (R$ 5,9 milhões de R$ 15,8 milhões), evidenciando forte concentração de vendas no Sudeste
-- Cama, mesa e banho é a categoria mais vendida em quantidade (11.115 itens), à frente de saúde/beleza e esporte/lazer
-- Cartão de crédito é a forma de pagamento dominante (76.795 transações) e também tem o maior ticket médio (R$ 163,32), acima de boleto e débito
-- Apenas duas categorias com volume relevante de avaliações ficam abaixo de 3,5: produtos de higiene/fraldas (nota 3,26) e móveis de escritório (nota 3,49) — a grande maioria das categorias mantém boa avaliação
-- O ticket médio geral é de R$ 140,64; curiosamente, estados do Norte e Nordeste (como PB, AL e AC) apresentam ticket médio mais alto que São Paulo, provavelmente pelo maior custo de frete devido à distância dos centros de distribuição
-- O valor do frete tem impacto pequeno na nota da avaliação (correlação de apenas -0,036), sugerindo que a insatisfação do cliente está ligada a outros fatores além do custo de entrega
+- São Paulo concentra 37,80% do faturamento total no período de 12 meses analisado (ago/2017-ago/2018), evidenciando forte concentração de vendas no Sudeste.
+- Cama, mesa e banho é uma das categorias mais vendidas, ao lado de saúde/beleza e esporte/lazer — mas categorias mais vendidas não são necessariamente as mais bem avaliadas.
+- Cartão de crédito é a forma de pagamento dominante (78,86% das vendas) e também tem o maior ticket médio, acima da média geral.
+- Apesar do frete mais caro, estados do Norte/Nordeste também apresentam ticket médio de produto (sem frete) mais alto que São Paulo — sugerindo uma possível diferença de precificação regional, não só efeito logístico.
+- O valor do frete tem impacto pequeno na nota da avaliação (correlação de apenas -0,036), sugerindo que a insatisfação do cliente está ligada a outros fatores além do custo de entrega.
+- Uma análise completa, com discussão aprofundada de cada achado, está disponível no [relatório da Etapa 1](etapa_01/relatorio.md).
 
 ## Como reproduzir
 1. Clone este repositório
@@ -70,5 +74,7 @@ SQL e Excel.
 4. Aplique os scripts de tratamento, na ordem, em `etapa_01/tratamento/`:
    - `01_geolocation_tratada.sql`
    - `02_products_categoria_nula.sql`
-5. As queries de cada pergunta de negócio estão em `etapa_01/queries/`
-6. Os resultados exportados estão em `etapa_01/resultados/`
+5. As queries de cada pergunta de negócio estão em `etapa_01/sql/`
+6. Os resultados exportados estão em `etapa_01/csv/`
+7. A planilha com tabelas dinâmicas e gráficos está em `etapa_01/analises_excel/`
+8. O relatório completo de análise está em `etapa_01/relatorio.md`
