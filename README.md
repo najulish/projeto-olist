@@ -3,19 +3,21 @@
 ## Sobre o projeto
 Este projeto é o primeiro de uma série de análises de dados que venho desenvolvendo como parte da minha transição de carreira para a área de Analytics, com foco em geointeligência. 
 
-Utilizando o dataset público de e-commerce da Olist, o objetivo é responder perguntas de negócio reais sobre vendas, comportamento de clientes e distribuição geográfica no mercado brasileiro, aplicando e evoluindo conhecimentos em SQL, Excel, Power BI, Python e, futuramente, análise espacial com QGIS.
+Utilizando o dataset público de e-commerce da Olist, o objetivo é responder perguntas de negócio reais sobre vendas, comportamento de clientes e distribuição geográfica no mercado brasileiro, aplicando e evoluindo conhecimentos em SQL, Excel, Python (Pandas), Power BI e, futuramente, análise espacial com QGIS.
 
 Mais do que um exercício técnico, este projeto documenta minha trajetória de aprendizado: cada etapa reflete uma nova ferramenta ou conceito incorporado ao meu processo de análise, do básico ao avançado.
 
 ## Status do projeto
 - [x] Etapa 1 — SQL + Excel
-- [ ] Etapa 2 — SQL avançado + Power BI
-- [ ] Etapa 3 — Python
+- [x] Etapa 2 — Pandas + Power BI 
+- [ ] Etapa 3 — SQL avançado + Matplotlib/Seaborn
 - [ ] Etapa 4 — Integração
 - [ ] Etapa 5 — QGIS
 
 ## Próximas etapas
-Para as próximas etapas pretendo apresentar um dashboard em Power BI visando responder perguntas mais complexas de negócios baseadas nos dados disponíveis. Pretendo também integrar Python nas análises, a fim de demonstrar minhas habilidades com a ferramenta. Como etapa final, a intenção é integrar a ferramenta QGIS ao projeto, gerando mapas e análises espaciais com insights de negócio.
+A Etapa 2 está em andamento: as perguntas de negócio já respondidas em SQL (Etapa 1) foram reproduzidas em Python usando Pandas, e o próximo passo é aprender o básico de Power BI para construir o primeiro dashboard do projeto.
+
+Na Etapa 3, o SQL avançado (window functions, CTEs) entra em cena para responder perguntas mais complexas, com visualização em Matplotlib/Seaborn e um segundo dashboard em Power BI, mostrando a evolução das habilidades adquiridas. A Etapa 4 foca em integrar as ferramentas (Python consultando o SQL diretamente, automação do dashboard). Como etapa final, a intenção é integrar a ferramenta QGIS ao projeto, gerando mapas e análises espaciais com insights de negócio.
 
 ## Dataset
 Fonte: https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
@@ -42,9 +44,10 @@ Tabelas principais:
 - **Período dos gráficos**: as análises em Excel (tabelas dinâmicas e gráficos) consideram o recorte de 12 meses entre agosto de 2017 e agosto de 2018, por ser o período com dados mais completos e consistentes. Isso pode gerar pequenas diferenças percentuais em relação às queries SQL originais (perguntas 1-7), que consideram todo o histórico da base.
 - **Nuance sobre ticket médio regional**: ao comparar o ticket médio considerando só o valor do produto (sem frete), estados mais distantes do eixo Sul-Sudeste continuam apresentando valores mais altos — indicando que a diferença regional de ticket médio não é explicada apenas pelo custo de frete, podendo refletir também diferenças de precificação ou mix de produtos por região.
 - **Sazonalidade no gráfico de pedidos por mês**: parte da variação mês a mês observada no volume de pedidos (especialmente a queda nos meses finais do período analisado) é provavelmente um efeito de como os dados foram extraídos/coletados, não necessariamente uma queda real de demanda — exceto o pico de novembro/2017, coerente com o período de Black Friday.
+- **Reorganização das etapas**: o planejamento original previa "Etapa 2 — SQL avançado + Power BI" e "Etapa 3 — Python". Esse roteiro foi reestruturado para "Etapa 2 — Pandas + Power BI" e "Etapa 3 — SQL avançado + Matplotlib/Seaborn", de forma a priorizar o aprendizado de Power BI mais cedo no cronograma.
 
 ## Ferramentas utilizadas
-SQL e Excel.
+SQL, Excel, Python e Power BI.
 
 ## Perguntas de negócio respondidas
 1. Qual o faturamento total por estado do cliente?
@@ -56,6 +59,8 @@ SQL e Excel.
 7. Qual a relação entre valor do frete e nota da avaliação?
 8. Quem são os 10 clientes que mais gastaram no total (considerando `customer_unique_id`)?
 
+Todas as perguntas acima foram originalmente respondidas em SQL (Etapa 1) e já reproduzidas em Python com Pandas (Etapa 2), como exercício de comparação entre as duas ferramentas.
+
 ## Principais insights
 - São Paulo concentra 37,80% do faturamento total no período de 12 meses analisado (ago/2017-ago/2018), evidenciando forte concentração de vendas no Sudeste.
 - Cama, mesa e banho é uma das categorias mais vendidas, ao lado de saúde/beleza e esporte/lazer — mas categorias mais vendidas não são necessariamente as mais bem avaliadas.
@@ -65,6 +70,8 @@ SQL e Excel.
 - Uma análise completa, com discussão aprofundada de cada achado, está disponível no [relatório da Etapa 1](etapa_01/relatorio.md).
 
 ## Como reproduzir
+
+**Etapa 1 — SQL + Excel**
 1. Clone este repositório
 2. Os CSVs brutos já estão disponíveis em `data/raw/`
 3. Importe os arquivos para um banco SQLite:
@@ -78,3 +85,8 @@ SQL e Excel.
 6. Os resultados exportados estão em `etapa_01/csv/`
 7. A planilha com tabelas dinâmicas e gráficos está em `etapa_01/analises_excel/`
 8. O relatório completo de análise está em `etapa_01/relatorio.md`
+
+**Etapa 2 — Pandas + Power BI**
+9. Os scripts Python que reproduzem as queries em Pandas estão em `etapa_02/pandas/`
+10. Os resultados exportados em CSV estão em `etapa_02/csv/`
+11. Foram feitos novos tratamentos nas bases de dado, disponiveis em `etapa_02/tratamento/tratamentos.py`
