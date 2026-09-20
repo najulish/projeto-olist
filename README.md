@@ -89,4 +89,4 @@ Todas as perguntas acima foram originalmente respondidas em SQL (Etapa 1) e já 
 **Etapa 2 — Pandas + Power BI**
 9. Os scripts Python que reproduzem as queries em Pandas estão em `etapa_02/pandas/`
 10. Os resultados exportados em CSV estão em `etapa_02/csv/`
-11. Foram feitos novos tratamentos nas bases de dado, disponiveis em `etapa_02/tratamento/tratamentos.py`
+11. Foram feitos novos tratamentos nas bases de dados, disponiveis em `etapa_02/tratamento/tratamentos.py`
